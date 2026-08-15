@@ -20,7 +20,7 @@ output "guardduty_filters_detector_id" {
 }
 output "guardduty_filters_finding_criteria" {
   description = "Map of finding_criteria values across all guardduty_filters, keyed the same as var.guardduty_filters"
-  value       = { for k, v in aws_guardduty_filter.guardduty_filters : k => v.finding_criteria if v.finding_criteria != null && length(v.finding_criteria) > 0 }
+  value       = { for k, v in aws_guardduty_filter.guardduty_filters : k => one(v.finding_criteria) if v.finding_criteria != null && length(v.finding_criteria) > 0 }
 }
 output "guardduty_filters_name" {
   description = "Map of name values across all guardduty_filters, keyed the same as var.guardduty_filters"
